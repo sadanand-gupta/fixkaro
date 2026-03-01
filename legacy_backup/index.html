@@ -1,0 +1,1298 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Turn your PDF resume into a professional portfolio website in seconds. No coding required.">
+    <title>fixKaro - AI Resume to Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #f0f0f0;
+            background: #050505;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1280px;
+            width: 92%;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .highlight {
+            color: #FFD700;
+        }
+
+        /* Header */
+        header {
+            background: rgba(5, 5, 5, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+        }
+
+        .logo {
+            height: 32px;
+            width: auto;
+            max-width: 180px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 48px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #aaa;
+            font-size: 14px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #FFD700;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            position: relative;
+            padding: 180px 0 120px;
+            text-align: center;
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden;
+            background: #000;
+        }
+
+        /* Background Images */
+        .hero-bg-gif {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+            z-index: 0;
+            opacity: 0.4;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.65);
+            z-index: 1;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 6vw, 76px);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 24px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero .hero-sub {
+            font-size: clamp(18px, 2vw, 22px);
+            color: #cccccc;
+            margin-bottom: 40px;
+            font-weight: 400;
+            letter-spacing: -0.01em;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero p.description {
+            font-size: 16px;
+            color: #ccc;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-bottom: 80px;
+        }
+
+        .cta-button {
+            padding: 14px 32px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .cta-primary {
+            background: #FFD700;
+            color: #000;
+            border: 2px solid #FFD700;
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.25);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: #fff;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .cta-secondary:hover {
+            border-color: #fff;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* --- MODERN AUTO-GLOW WORKFLOW STYLES --- */
+        .workflow-visual {
+            background: rgba(20, 20, 20, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 40px 50px;
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* 1. SIMPLE STRAIGHT LINE */
+        .workflow-line {
+            position: absolute;
+            top: 65px;
+            /* Aligned vertically with center of icons */
+            left: 80px;
+            /* Start slightly after the first icon */
+            right: 80px;
+            /* End slightly before the last icon */
+            height: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            /* The empty "Track" */
+            z-index: 1;
+            overflow: hidden;
+            /* Ensures the light beam doesn't spill out */
+            border-radius: 2px;
+        }
+
+        /* The Moving Gold Beam */
+        .workflow-line::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+
+            /* A gradient beam: transparent -> Gold -> transparent */
+            background: linear-gradient(90deg,
+                    transparent 0%,
+                    transparent 25%,
+                    #FFD700 50%,
+                    transparent 75%,
+                    transparent 100%);
+
+            /* Start from left, move to right */
+            transform: translateX(-100%);
+            animation: beam-flow 3s linear infinite;
+        }
+
+        @keyframes beam-flow {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        .workflow-steps {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 2. ICON ANIMATIONS (Pulsing when beam hits) */
+        @keyframes auto-pulse {
+            0% {
+                border-color: rgba(255, 215, 0, 0.3);
+                color: #fff;
+                box-shadow: 0 0 0 0 rgba(255, 215, 0, 0);
+                transform: scale(1);
+            }
+
+            15% {
+                /* Active Hit */
+                border-color: #FFD700;
+                color: #FFD700;
+                background: #111;
+                box-shadow: 0 0 25px rgba(255, 215, 0, 0.6);
+                transform: scale(1.15);
+            }
+
+            30% {
+                /* Cooldown */
+                border-color: rgba(255, 215, 0, 0.3);
+                color: #fff;
+                background: #000;
+                box-shadow: 0 0 0 0 rgba(255, 215, 0, 0);
+                transform: scale(1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .wf-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 16px;
+            flex: 1;
+        }
+
+        .wf-icon-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #000;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            position: relative;
+            z-index: 2;
+            animation: auto-pulse 3s infinite;
+            /* Matching beam speed */
+        }
+
+        /* Stagger the animation so icon lights up when beam hits it */
+        .wf-step:nth-child(1) .wf-icon-circle {
+            animation-delay: 0s;
+        }
+
+        .wf-step:nth-child(2) .wf-icon-circle {
+            animation-delay: 0.75s;
+        }
+
+        .wf-step:nth-child(3) .wf-icon-circle {
+            animation-delay: 1.5s;
+        }
+
+        .wf-step:nth-child(4) .wf-icon-circle {
+            animation-delay: 2.25s;
+        }
+
+        .wf-text {
+            font-size: 16px;
+            color: #fff;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        .wf-sub {
+            font-size: 13px;
+            color: #888;
+        }
+
+        /* FEATURES SECTION */
+        .features-section {
+            padding: 80px 0;
+            background: linear-gradient(180deg, #000000 0%, #0a0a0a 100%);
+            border-top: 1px solid #1a1a1a;
+        }
+
+        .features-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .features-header h2 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #fff, #999);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            padding: 40px 32px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .feature-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .feature-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .feature-card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .feature-card:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            background: rgba(30, 30, 30, 0.8);
+            border-color: #FFD700;
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.1);
+        }
+
+        .feature-icon-wrapper {
+            width: 56px;
+            height: 56px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #FFD700;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            transition: 0.3s;
+        }
+
+        .feature-card:hover .feature-icon-wrapper {
+            background: #FFD700;
+            color: #000;
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .feature-card h3 {
+            color: #fff;
+            font-size: 20px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            color: #999;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        footer {
+            padding: 100px 0 60px;
+            text-align: center;
+            background: #020202;
+            border-top: 1px solid #222;
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* --- DEVICE SPECIFIC ADJUSTMENTS --- */
+        @media (max-width: 1024px) {
+            .hero {
+                padding-top: 140px;
+            }
+
+            .container {
+                padding: 0 32px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 140px 0 60px;
+            }
+
+            /* Fine-tune typography for mobile if clamp is slightly off preference */
+            .hero h1 {
+                margin-bottom: 20px;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .workflow-visual {
+                padding: 32px 24px;
+                width: 100%;
+                background: rgba(10, 10, 10, 0.8);
+                border-radius: 20px;
+            }
+
+            /* Hide the Horizontal Beam on mobile */
+            .workflow-line {
+                display: none;
+            }
+
+            .workflow-steps {
+                flex-direction: column;
+                gap: 32px;
+                position: relative;
+                padding-left: 12px;
+                /* Slight offset for visual balance */
+            }
+
+            /* Continuous vertical line for mobile */
+            .workflow-steps::before {
+                content: '';
+                position: absolute;
+                top: 20px;
+                bottom: 20px;
+                left: 32px;
+                /* Aligned with icon center (parent padding 12 + 20) */
+                width: 2px;
+                background: linear-gradient(to bottom,
+                        rgba(255, 215, 0, 0.2),
+                        rgba(255, 255, 255, 0.05));
+                z-index: 0;
+            }
+
+            .wf-step {
+                flex-direction: row;
+                text-align: left;
+                align-items: center;
+                gap: 24px;
+            }
+
+            .wf-icon-circle {
+                width: 44px;
+                height: 44px;
+                font-size: 20px;
+                flex-shrink: 0;
+                background: #0a0a0a;
+                border-width: 2px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .feature-card {
+                padding: 32px 24px;
+            }
+        }
+
+        /* WhatsApp Floating Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            animation: pulse-whatsapp 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+        }
+
+        @keyframes pulse-whatsapp {
+
+            0%,
+            100% {
+                box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            }
+
+            50% {
+                box-shadow: 0 4px 30px rgba(37, 211, 102, 0.7);
+            }
+        }
+
+        /* Enhanced Footer */
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+            text-align: left;
+        }
+
+        .footer-section h3 {
+            color: #FFD700;
+            font-size: 18px;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #999;
+            font-size: 14px;
+            line-height: 1.8;
+            text-decoration: none;
+            display: block;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #FFD700;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #222;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .social-link {
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            background: #FFD700;
+            transform: translateY(-3px);
+            color: #000;
+        }
+
+        /* --- PREVIEW SECTION STYLES --- */
+        .preview-section {
+            padding: 100px 0;
+            background: #020202;
+            border-top: 1px solid #1a1a1a;
+        }
+
+        .preview-header h2 {
+            font-size: clamp(32px, 5vw, 42px);
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #fff;
+        }
+
+        .preview-header p {
+            color: #888;
+            margin-bottom: 60px;
+            font-size: 18px;
+        }
+
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+        }
+
+        .preview-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid #333;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .preview-card:hover {
+            border-color: #FFD700;
+            transform: translateY(-10px);
+        }
+
+        .preview-card-image {
+            height: 220px;
+            background: #111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            font-size: 64px;
+            font-weight: 800;
+        }
+
+        .preview-card-content {
+            padding: 24px;
+            text-align: left;
+        }
+
+        .preview-card h3 {
+            color: #fff;
+            margin-bottom: 8px;
+            font-size: 20px;
+        }
+
+        .preview-card p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Responsive Improvements */
+        @media (max-width: 480px) {
+            .preview-grid {
+                grid-template-columns: 1fr;
+                /* Single column on very small screens */
+                gap: 20px;
+            }
+
+            .preview-card-image {
+                height: 180px;
+                /* Smaller image/height */
+            }
+
+            .container {
+                padding: 0 20px;
+            }
+
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .upload-modal {
+                padding: 24px;
+                width: 95%;
+            }
+        }
+
+        /* --- INTERACTIVE UPLOAD MODAL & ANIMATIONS --- */
+
+        /* Rotating Glow Ring Animation */
+        @keyframes rotate-ring {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        .wf-icon-circle.active-step {
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+            border-color: #FFD700;
+            background: #111;
+            color: #FFD700;
+            position: relative;
+        }
+
+        .wf-icon-circle.active-step::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 140%;
+            height: 140%;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            border-top-color: #FFD700;
+            border-right-color: #FFD700;
+            animation: rotate-ring 2s linear infinite;
+            z-index: -1;
+        }
+
+        /* Modal Overlay */
+        .upload-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .upload-modal-overlay.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Modal Content */
+        .upload-modal {
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 20px;
+            padding: 40px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            transform: translateY(20px);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        .upload-modal-overlay.show .upload-modal {
+            transform: translateY(0);
+            border-color: rgba(255, 215, 0, 0.3);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.1);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: transparent;
+            border: none;
+            color: #666;
+            font-size: 24px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .close-modal:hover {
+            color: #fff;
+        }
+
+        /* Drag & Drop Zone */
+        .drop-zone {
+            border: 2px dashed #444;
+            border-radius: 12px;
+            padding: 40px 20px;
+            margin-top: 24px;
+            transition: all 0.3s;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.02);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .drop-zone:hover,
+        .drop-zone.drag-over {
+            border-color: #FFD700;
+            background: rgba(255, 215, 0, 0.05);
+        }
+
+        .upload-icon-large {
+            font-size: 48px;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .upload-btn-action {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: #FFD700;
+            color: #000;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .upload-btn-action:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- [Existing Header Code...] -->
+
+<header>
+    <div class="container">
+        <nav>
+            <img src="logohai2.png" alt="fixKaro" class="logo">
+            <ul>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#preview">Preview</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="signin.html" style="color: #FFD700;">Sign In</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- HERO SECTION -->
+<section class="hero">
+    <picture>
+        <source media="(max-width: 1024px)" srcset="background_tablet.gif">
+        <img src="background.gif" alt="Animated Background" class="hero-bg-gif">
+    </picture>
+
+    <div class="container">
+        <h1>Transform Your Resume into a <span class="highlight">Stunning Portfolio</span> Website.</h1>
+        <p class="hero-sub">Build a professional online presence in seconds—not hours.</p>
+        <!-- <p class="description">fixKaro is the ultimate AI portfolio builder. Convert your static PDF resume into a
+                responsive, sharable personal website without writing code.</p> -->
+
+        <div class="cta-buttons">
+            <a href="javascript:void(0)" id="buildBtn" class="cta-button cta-primary">Build My Portfolio Free</a>
+            <a href="#preview" class="cta-button cta-secondary">View Demo</a>
+        </div>
+
+        <!-- AUTO GLOW WORKFLOW BAR -->
+        <div class="workflow-visual">
+            <!-- Simple Straight Beam Line -->
+            <div class="workflow-line"></div>
+
+            <div class="workflow-steps">
+                <!-- Step 1 -->
+                <div class="wf-step" id="step1Container" style="cursor: pointer; transition: transform 0.3s;">
+                    <div class="wf-icon-circle" id="step1Icon">📂</div>
+                    <div>
+                        <div class="wf-text">1. Upload PDF</div>
+                        <div class="wf-sub">Drag & Drop Resume</div>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="wf-step" id="step2Container" style="transition: transform 0.3s;">
+                    <div class="wf-icon-circle" id="step2Icon">⚡</div>
+                    <div>
+                        <div class="wf-text">2. AI Build</div>
+                        <div class="wf-sub">Auto-Extraction</div>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="wf-step" id="step3Container" style="transition: transform 0.3s;">
+                    <div class="wf-icon-circle" id="step3Icon">🎨</div>
+                    <div>
+                        <div class="wf-text">3. Customize</div>
+                        <div class="wf-sub">Pick Your Theme</div>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="wf-step">
+                    <div class="wf-icon-circle">🚀</div>
+                    <div>
+                        <div class="wf-text">4. Go Live</div>
+                        <div class="wf-sub">Get Your Link</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Workflow -->
+
+    </div>
+</section>
+
+<!-- FEATURES SECTION -->
+<section id="features" class="features-section">
+    <div class="container">
+        <div class="features-header">
+            <h2>Powerful Features</h2>
+            <p style="color: #666; max-width: 500px; margin: 0 auto;">Everything you need to impress recruiters and
+                land your dream job.</p>
+        </div>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon-wrapper">📤</div>
+                <h3>Smart Parsing</h3>
+                <p>Our AI reads the messy details of your PDF resume and organizes them into a clean structure
+                    automatically.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon-wrapper">✨</div>
+                <h3>Built-in SEO</h3>
+                <p>We automatically optimize your portfolio so your name ranks higher on Google searches.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon-wrapper">📱</div>
+                <h3>Mobile Responsive</h3>
+                <p>50% of recruiters view links on phones. Your site will look flawless on any screen size.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon-wrapper">🔗</div>
+                <h3>Custom URL</h3>
+                <p>Get a professional link (fixkaro.com/you) to share on LinkedIn instead of a heavy PDF file.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PREVIEW / THEMES SECTION -->
+<!-- PREVIEW / THEMES SECTION -->
+<section id="preview" class="preview-section">
+    <div class="container" style="text-align: center;"> <!-- kept text-align center for container mainly -->
+        <div class="preview-header">
+            <h2>Choose Your Style</h2>
+            <p>Select a premium template to get started.</p>
+        </div>
+
+        <div class="preview-grid">
+            <!-- Template 1 -->
+            <div class="preview-card">
+                <div class="preview-card-image">1</div>
+                <div class="preview-card-content">
+                    <h3>Minimalist</h3>
+                    <p>Clean, type-centric design for professionals.</p>
+                </div>
+            </div>
+            <!-- Template 2 -->
+            <div class="preview-card">
+                <div class="preview-card-image">2</div>
+                <div class="preview-card-content">
+                    <h3>Creative</h3>
+                    <p>Bold colors and layout for creatives.</p>
+                </div>
+            </div>
+            <!-- Template 3 -->
+            <div class="preview-card">
+                <div class="preview-card-image">3</div>
+                <div class="preview-card-content">
+                    <h3>Corporate</h3>
+                    <p>Professional and sleek for business.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About fixKaro</h3>
+                <p>We help professionals turn their static resumes into stunning, interactive portfolio websites
+                    using the power of AI.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link">𝕏</a>
+                    <a href="#" class="social-link">in</a>
+                    <a href="#" class="social-link">📸</a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="#features">Features</a>
+                <a href="#preview">Preview</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>Email: <a href="mailto:gupta@gmail.com" style="display:inline; color:#999;">gupta@gmail.com</a>
+                </p>
+                <p>Location: Bangalore, India</p>
+                <p>Support: 24/7 Available</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 fixKaro. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/7824051456?text=Hi%20fixKaro%2C%20I%20need%20help%20with..." class="whatsapp-float"
+    target="_blank" title="Chat on WhatsApp">
+    💬
+</a>
+<!-- Upload Modal -->
+<div class="upload-modal-overlay" id="uploadModal">
+    <div class="upload-modal">
+        <button class="close-modal" id="closeModal">&times;</button>
+        <h2 style="color: #fff; margin-bottom: 24px;">Upload Your Resume</h2>
+
+        <!-- Default Drop Zone -->
+        <div class="drop-zone" id="dropZone">
+            <span class="upload-icon-large">📂</span>
+            <p style="color: #ccc; margin-bottom: 8px;">Drag & Drop your PDF here</p>
+            <p style="color: #666; font-size: 13px;">or click to browse</p>
+            <input type="file" id="fileInput" accept=".pdf" style="display: none;">
+        </div>
+
+        <!-- Upload Progress (Hidden Initially) -->
+        <div id="uploadProgress" style="display: none; margin-top: 24px;">
+            <p style="color: #FFD700; margin-bottom: 12px; font-weight: 500;">Uploading & Scanning...</p>
+            <div style="width: 100%; height: 6px; background: #333; border-radius: 3px; overflow: hidden;">
+                <div id="progressBar"
+                    style="width: 0%; height: 100%; background: #FFD700; transition: width 0.1s linear;"></div>
+            </div>
+            <p id="progressText" style="color: #666; font-size: 12px; margin-top: 8px;">0%</p>
+        </div>
+    </div>
+</div>
+
+<!-- Interaction Tooltip -->
+<div id="stepTooltip" style="
+        position: absolute; 
+        background: #FFD700; 
+        color: #000; 
+        padding: 8px 16px; 
+        border-radius: 8px; 
+        font-weight: bold; 
+        font-size: 14px; 
+        pointer-events: none; 
+        opacity: 0; 
+        transform: translateY(10px); 
+        transition: all 0.3s ease; 
+        z-index: 100;">
+    👇 Click Step 1 to Start!
+</div>
+
+<!-- Interaction Script -->
+<script>
+    const buildBtn = document.getElementById('buildBtn');
+    const step1Container = document.getElementById('step1Container');
+    const step1Icon = document.getElementById('step1Icon');
+    const step2Container = document.getElementById('step2Container');
+    const step2Icon = document.getElementById('step2Icon');
+    const step3Container = document.getElementById('step3Container');
+    const step3Icon = document.getElementById('step3Icon');
+
+    const uploadModal = document.getElementById('uploadModal');
+    const closeModal = document.getElementById('closeModal');
+    const dropZone = document.getElementById('dropZone');
+    const fileInput = document.getElementById('fileInput');
+    const stepTooltip = document.getElementById('stepTooltip');
+
+    const uploadProgress = document.getElementById('uploadProgress');
+    const progressBar = document.getElementById('progressBar');
+    const progressText = document.getElementById('progressText');
+
+    // Helper: Show Tooltip at Element
+    function showTooltip(element, text) {
+        const rect = element.getBoundingClientRect();
+        const scrollY = window.scrollY || window.pageYOffset;
+        stepTooltip.innerText = text;
+        stepTooltip.style.top = (rect.top + scrollY - 50) + 'px'; // 50px above
+        stepTooltip.style.left = (rect.left + (rect.width / 2) - (stepTooltip.offsetWidth / 2)) + 'px'; // Center roughly
+        stepTooltip.style.opacity = '1';
+        stepTooltip.style.transform = 'translateY(0)';
+    }
+
+    // Helper: Hide Tooltip
+    function hideTooltip() {
+        stepTooltip.style.opacity = '0';
+        stepTooltip.style.transform = 'translateY(10px)';
+    }
+
+    // 1. "Build My Portfolio" Button Click
+    buildBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        step1Container.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        setTimeout(() => {
+            step1Icon.classList.add('active-step');
+            step1Container.style.transform = 'scale(1.1)';
+            showTooltip(step1Icon, "👇 Click Step 1 to Start!");
+        }, 600);
+    });
+
+    // 2. Click Step 1 -> Open Modal
+    step1Container.addEventListener('click', () => {
+        uploadModal.classList.add('show');
+        step1Icon.classList.remove('active-step');
+        step1Container.style.transform = 'scale(1)';
+        hideTooltip();
+    });
+
+    // 3. Modal & Upload Logic
+    closeModal.addEventListener('click', () => uploadModal.classList.remove('show'));
+
+    dropZone.addEventListener('click', () => fileInput.click());
+
+    dropZone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropZone.classList.add('drag-over');
+    });
+    dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+
+    dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropZone.classList.remove('drag-over');
+        startUploadSimulation(); // Start on drop
+    });
+
+    fileInput.addEventListener('change', () => {
+        if (fileInput.files.length > 0) {
+            startUploadSimulation(); // Start on selection
+        }
+    });
+
+    function startUploadSimulation() {
+        // UI Switch: Hide DropZone, Show Progress
+        dropZone.style.display = 'none';
+        uploadProgress.style.display = 'block';
+
+        let progress = 0;
+        const duration = 3500; // 3.5 seconds
+        const intervalTime = 35; // Update every 35ms
+        const step = 100 / (duration / intervalTime);
+
+        const interval = setInterval(() => {
+            progress += step;
+            if (progress >= 100) {
+                progress = 100;
+                clearInterval(interval);
+
+                // ON COMPLETE
+                progressBar.style.width = '100%';
+                progressText.innerText = '100% - Done!';
+
+                setTimeout(() => {
+                    // Close Modal
+                    uploadModal.classList.remove('show');
+
+                    // Transition to Step 2
+                    activateStep2();
+
+                    // Reset Modal for next time (optional)
+                    setTimeout(() => {
+                        dropZone.style.display = 'block';
+                        uploadProgress.style.display = 'none';
+                        progressBar.style.width = '0%';
+                        fileInput.value = '';
+                    }, 500);
+                }, 500);
+            } else {
+                progressBar.style.width = progress + '%';
+                progressText.innerText = Math.round(progress) + '%';
+            }
+        }, intervalTime);
+    }
+
+    function activateStep2() {
+        // Highlight Step 2
+        step2Icon.classList.add('active-step');
+        step2Container.style.transform = 'scale(1.1)';
+
+        // Show Alert/Tooltip at Step 2
+        // Need to wait slightly for the modal to fade out
+        setTimeout(() => {
+            showTooltip(step2Icon, "⚡ AI Building Portfolio...");
+
+            // Simulate AI Processing time then move to Step 3
+            setTimeout(() => {
+                step2Icon.classList.remove('active-step');
+                step2Container.style.transform = 'scale(1)';
+                hideTooltip();
+
+                activateStep3();
+            }, 3000);
+        }, 600);
+    }
+
+    function activateStep3() {
+        // Highlight Step 3
+        step3Icon.classList.add('active-step');
+        step3Container.style.transform = 'scale(1.1)';
+        showTooltip(step3Icon, "🎨 Pick Your Theme!");
+
+        // Scroll to Preview Section
+        setTimeout(() => {
+            document.getElementById('preview')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+            // Optional: remove highlight after user arrives
+            setTimeout(() => {
+                step3Icon.classList.remove('active-step');
+                step3Container.style.transform = 'scale(1)';
+                hideTooltip();
+            }, 3000);
+        }, 1000);
+    }
+
+</script>
+</body>
+
+</html> -->
