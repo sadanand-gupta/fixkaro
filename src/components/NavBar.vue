@@ -7,9 +7,9 @@
     <!-- Logo and Brand -->
     <div class="d-flex align-center ga-2 ml-2 ml-md-4">
       <v-img :src="logo" max-height="50" max-width="50" contain class="logo-img" />
-      <div class="brand-text d-none d-sm-flex flex-column">
-        <span class="text-h6 font-weight-bold primary--text">Fixkaro.ai</span>
-        <span class="text-caption text-medium-emphasis" style="line-height: 1; margin-top: -4px;">AI Career Platform</span>
+      <div class="brand-text d-none d-sm-flex flex-column align-center">
+        <v-img src="/logohai.png" max-height="32" max-width="140" contain class="brand-logo" />
+        <span class="text-caption text-medium-emphasis" style="line-height: 1; margin-top: -2px;">AI Career Platform</span>
       </div>
     </div>
 
@@ -143,7 +143,7 @@
       <div class="d-flex align-center ga-2 mb-6">
         <v-img :src="logo" max-height="40" max-width="40" contain />
         <div>
-          <div class="text-h6 font-weight-bold">Fixkaro.ai</div>
+          <v-img src="/logohai.png" max-height="28" max-width="120" contain class="mb-1" />
           <div class="text-caption text-medium-emphasis">AI Career Platform</div>
         </div>
       </div>
@@ -259,6 +259,14 @@ const { user, loading, displayName, signInWithGoogle, signOutUser } = useAuth();
 
 .brand-text {
   user-select: none;
+}
+
+.brand-logo {
+  transition: transform 0.3s ease;
+}
+
+.brand-logo:hover {
+  transform: scale(1.02);
 }
 
 .mobile-drawer {
