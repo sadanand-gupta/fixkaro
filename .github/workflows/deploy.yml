@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - dev-gupta  # triggers on push to dev-gupta branch
+      - main       # also triggers on push to main branch
   workflow_dispatch:  # allows manual trigger
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
