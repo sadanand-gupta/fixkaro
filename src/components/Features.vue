@@ -26,22 +26,22 @@ const features = [
     color: 'success'
   },
   {
+    icon: 'mdi-linkedin',
+    title: 'LinkedIn & Naukri Profile Generator',
+    description: 'Generate compelling headlines, about sections, and professional summaries for LinkedIn, Naukri, and other job platforms - optimized for maximum visibility.',
+    color: 'info'
+  },
+  {
     icon: 'mdi-clock-fast',
     title: 'Under 5 Minutes Processing',
-    description: 'Get your ATS-optimized resume and beautiful portfolio website in less than 5 minutes. No technical skills required.',
+    description: 'Get your ATS-optimized resume, portfolio website, and social profiles in less than 5 minutes. No technical skills required.',
     color: 'warning'
   },
   {
     icon: 'mdi-file-check',
     title: 'ATS-Optimized Templates',
     description: 'Our AI ensures your resume passes Applicant Tracking Systems with optimized keywords, formatting, and structure.',
-    color: 'info'
-  },
-  {
-    icon: 'mdi-account-star',
-    title: '95% Success Rate',
-    description: 'Join 500+ professionals who have successfully transformed their careers with our platform.',
-    color: 'error'
+    color: 'deep-purple'
   },
   {
     icon: 'mdi-whatsapp',
@@ -69,12 +69,20 @@ const pricingPlans = [
     ]
   },
   {
+    category: 'LinkedIn & Job Profiles',
+    plans: [
+      { name: 'Basic', price: '₹399', features: ['LinkedIn Headline', 'About Section', '1 Platform', '1 Revision', 'Email Support'] },
+      { name: 'Professional', price: '₹699', features: ['LinkedIn + Naukri + Indeed', 'Headline & About Sections', '2 Revisions', 'WhatsApp Support'] },
+      { name: 'Premium', price: '₹999', features: ['All Platforms (LinkedIn, Naukri, Indeed, Monster)', 'Headline, About & Summary', 'Unlimited Revisions', 'Priority Support', 'Keywords Optimization'] }
+    ]
+  },
+  {
     category: 'Combo Pack',
     featured: true,
     plans: [
-      { name: 'Value Pack', price: '₹1,999', features: ['ATS Resume', 'Portfolio Website', '2 Revisions Each', 'Basic Support'], savings: 'Save ₹500' },
-      { name: 'Career Pack', price: '₹3,499', features: ['ATS Resume', 'Portfolio Website', '5 Revisions Each', 'WhatsApp Support', 'Custom Domain'], savings: 'Save ₹1,000' },
-      { name: 'Ultimate Pack', price: '₹4,999', features: ['ATS Resume', 'Portfolio Website', 'Unlimited Revisions', 'Priority Support', 'Custom Domain', 'SEO', 'Cover Letter'], savings: 'Save ₹2,000' }
+      { name: 'Value Pack', price: '₹1,999', features: ['ATS Resume', 'Portfolio Website', 'LinkedIn/Naukri Profiles', '2 Revisions Each', 'Basic Support'], savings: 'Save ₹500' },
+      { name: 'Career Pack', price: '₹3,499', features: ['ATS Resume', 'Portfolio Website', 'LinkedIn/Naukri Profiles', '5 Revisions Each', 'WhatsApp Support', 'Custom Domain'], savings: 'Save ₹1,000' },
+      { name: 'Ultimate Pack', price: '₹4,999', features: ['ATS Resume', 'Portfolio Website', 'LinkedIn/Naukri Profiles', 'Unlimited Revisions', 'Priority Support', 'Custom Domain', 'SEO', 'Cover Letter'], savings: 'Save ₹2,000' }
     ]
   }
 ];
@@ -116,12 +124,12 @@ onMounted(() => {
         </v-chip>
 
         <h2 class="text-h4 text-md-h3 font-weight-bold mb-4">
-          Land More Interviews with
-          <span class="text-primary">Fixkaro AI Resume Builder</span>
+          Transform Your Career with
+          <span class="text-primary">Fixkaro AI - All-in-One Platform</span>
         </h2>
 
         <p class="text-h6 mb-6 text-medium-emphasis">
-          ATS Check, AI Writer, and One-Click Job Tailoring make your resume stand out to recruiters.
+          ATS Resumes, Portfolio Websites, and LinkedIn/Naukri Profiles - All generated from your uploaded resume in minutes.
         </p>
 
         <!-- Feature List -->
@@ -130,24 +138,24 @@ onMounted(() => {
             <template v-slot:prepend>
               <v-icon color="success">mdi-check-circle</v-icon>
             </template>
-            <v-list-item-title class="font-weight-medium">ATS-Optimized Templates</v-list-item-title>
-            <v-list-item-subtitle>Beat applicant tracking systems</v-list-item-subtitle>
+            <v-list-item-title class="font-weight-medium">ATS-Optimized Resumes</v-list-item-title>
+            <v-list-item-subtitle>Beat applicant tracking systems with smart formatting</v-list-item-subtitle>
           </v-list-item>
 
           <v-list-item>
             <template v-slot:prepend>
               <v-icon color="success">mdi-check-circle</v-icon>
             </template>
-            <v-list-item-title class="font-weight-medium">AI-Powered Content Enhancement</v-list-item-title>
-            <v-list-item-subtitle>Smart content optimization</v-list-item-subtitle>
+            <v-list-item-title class="font-weight-medium">Portfolio Website Generation</v-list-item-title>
+            <v-list-item-subtitle>Beautiful responsive websites in minutes</v-list-item-subtitle>
           </v-list-item>
 
           <v-list-item>
             <template v-slot:prepend>
               <v-icon color="success">mdi-check-circle</v-icon>
             </template>
-            <v-list-item-title class="font-weight-medium">Instant Portfolio Generation</v-list-item-title>
-            <v-list-item-subtitle>Beautiful responsive websites</v-list-item-subtitle>
+            <v-list-item-title class="font-weight-medium">LinkedIn & Naukri Profiles</v-list-item-title>
+            <v-list-item-subtitle>Compelling headlines and about sections for job platforms</v-list-item-subtitle>
           </v-list-item>
         </v-list>
 

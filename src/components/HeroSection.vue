@@ -28,7 +28,7 @@
             data-aos="fade-up"
             data-aos-delay="100"
           >
-            AI-powered career platform that instantly converts your resume into beautiful, responsive portfolio websites and ATS-optimized resumes.
+            AI-powered career platform that converts your resume into ATS-optimized resumes, stunning portfolio websites, and compelling LinkedIn/Naukri profiles - all in under 5 minutes.
           </p>
 
           <div 
