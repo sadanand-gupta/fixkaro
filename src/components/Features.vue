@@ -53,37 +53,57 @@ const features = [
 
 const pricingPlans = [
   {
-    category: 'ATS Resume',
-    plans: [
-      { name: 'Basic', price: '₹499', features: ['AI Resume Optimization', '1 Revision', 'ATS-Friendly Format', 'PDF Download'] },
-      { name: 'Standard', price: '₹749', features: ['AI Resume Optimization', '3 Revisions', 'ATS-Friendly Format', 'PDF + Word Download', 'WhatsApp Support'] },
-      { name: 'Premium', price: '₹999', features: ['AI Resume Optimization', 'Unlimited Revisions', 'ATS-Friendly Format', 'All Formats', 'Priority Support', 'Cover Letter'] }
+    name: 'Starter',
+    price: '₹1,999',
+    popular: false,
+    description: 'Perfect for job seekers getting started',
+    features: [
+      'ATS-Optimized Resume',
+      'Basic Portfolio Website',
+      'LinkedIn Headline & About',
+      '2 Revisions (All Services)',
+      'Email Support',
+      'PDF + Word Downloads',
+      '3 Website Sections',
+      '1 Portfolio Theme'
     ]
   },
   {
-    category: 'Portfolio Website',
-    plans: [
-      { name: 'Starter', price: '₹1,499', features: ['Responsive Website', '1 Theme', '5 Sections', '1 Revision', 'Email Support'] },
-      { name: 'Professional', price: '₹2,499', features: ['Responsive Website', '3 Themes', '8 Sections', '3 Revisions', 'WhatsApp Support', 'Custom Domain'] },
-      { name: 'Enterprise', price: '₹3,999', features: ['Responsive Website', 'Unlimited Themes', 'All Sections', 'Unlimited Revisions', 'Priority Support', 'Custom Domain', 'SEO Optimization'] }
-    ]
+    name: 'Professional',
+    price: '₹3,499',
+    popular: true,
+    description: 'Most popular - Complete career package',
+    features: [
+      'ATS-Optimized Resume + Cover Letter',
+      'Professional Portfolio Website',
+      'LinkedIn + Naukri + Indeed Profiles',
+      '5 Revisions (All Services)',
+      'WhatsApp Support',
+      'All File Formats',
+      'Custom Domain Name',
+      '8 Website Sections',
+      '3 Portfolio Themes'
+    ],
+    savings: 'Save ₹1,500'
   },
   {
-    category: 'LinkedIn & Job Profiles',
-    plans: [
-      { name: 'Basic', price: '₹399', features: ['LinkedIn Headline', 'About Section', '1 Platform', '1 Revision', 'Email Support'] },
-      { name: 'Professional', price: '₹699', features: ['LinkedIn + Naukri + Indeed', 'Headline & About Sections', '2 Revisions', 'WhatsApp Support'] },
-      { name: 'Premium', price: '₹999', features: ['All Platforms (LinkedIn, Naukri, Indeed, Monster)', 'Headline, About & Summary', 'Unlimited Revisions', 'Priority Support', 'Keywords Optimization'] }
-    ]
-  },
-  {
-    category: 'Combo Pack',
-    featured: true,
-    plans: [
-      { name: 'Value Pack', price: '₹1,999', features: ['ATS Resume', 'Portfolio Website', 'LinkedIn/Naukri Profiles', '2 Revisions Each', 'Basic Support'], savings: 'Save ₹500' },
-      { name: 'Career Pack', price: '₹3,499', features: ['ATS Resume', 'Portfolio Website', 'LinkedIn/Naukri Profiles', '5 Revisions Each', 'WhatsApp Support', 'Custom Domain'], savings: 'Save ₹1,000' },
-      { name: 'Ultimate Pack', price: '₹4,999', features: ['ATS Resume', 'Portfolio Website', 'LinkedIn/Naukri Profiles', 'Unlimited Revisions', 'Priority Support', 'Custom Domain', 'SEO', 'Cover Letter'], savings: 'Save ₹2,000' }
-    ]
+    name: 'Ultimate',
+    price: '₹4,999',
+    popular: false,
+    description: 'Premium package with unlimited support',
+    features: [
+      'ATS-Optimized Resume + Cover Letter',
+      'Premium Portfolio Website',
+      'All Job Platforms (LinkedIn, Naukri, Indeed, Monster)',
+      'Unlimited Revisions (All Services)',
+      'Priority WhatsApp Support',
+      'All File Formats',
+      'Custom Domain + SEO',
+      'All Website Sections',
+      'Unlimited Themes',
+      'Keywords Optimization'
+    ],
+    savings: 'Save ₹3,000'
   }
 ];
 
@@ -229,72 +249,67 @@ onMounted(() => {
         Simple & Transparent <span class="text-primary">Pricing</span>
       </h2>
       <p class="text-h6 text-medium-emphasis">
-        Choose the perfect plan for your career success
+        All-inclusive packages with Resume, Portfolio & Social Profiles - Choose what fits your needs
       </p>
     </div>
 
-    <div v-for="(category, catIndex) in pricingPlans" :key="catIndex" class="mb-16">
-      <div class="text-center mb-8">
-        <v-chip 
-          :color="category.featured ? 'primary' : 'default'" 
-          size="large" 
-          :variant="category.featured ? 'elevated' : 'outlined'"
+    <v-row class="justify-center mb-16">
+      <v-col 
+        v-for="(plan, index) in pricingPlans" 
+        :key="index" 
+        cols="12" 
+        sm="6" 
+        md="4"
+        data-aos="zoom-in"
+        :data-aos-delay="index * 100"
+      >
+        <v-card 
+          class="h-100 pa-6 position-relative" 
+          :elevation="plan.popular ? 16 : 4"
+          :color="plan.popular ? 'primary' : 'surface'"
+          :class="{ 'featured-plan': plan.popular }"
         >
-          <v-icon v-if="category.featured" start>mdi-star</v-icon>
-          {{ category.category }}
-          <v-icon v-if="category.featured" end>mdi-star</v-icon>
-        </v-chip>
-      </div>
+          <div v-if="plan.popular" class="popular-badge">
+            <v-chip color="white" size="small" class="font-weight-bold">
+              <v-icon start size="small">mdi-star</v-icon>
+              MOST POPULAR
+            </v-chip>
+          </div>
 
-      <v-row>
-        <v-col 
-          v-for="(plan, planIndex) in category.plans" 
-          :key="planIndex" 
-          cols="12" 
-          sm="6" 
-          md="4"
-          data-aos="zoom-in"
-          :data-aos-delay="planIndex * 100"
-        >
-          <v-card 
-            class="h-100 pa-6" 
-            :elevation="category.featured ? 12 : 4"
-            :color="category.featured && planIndex === 1 ? 'primary' : 'surface'"
-            :class="{ 'featured-plan': category.featured && planIndex === 1 }"
+          <div v-if="plan.savings" class="text-center mb-3">
+            <v-chip color="success" size="small">{{ plan.savings }}</v-chip>
+          </div>
+
+          <h3 class="text-h5 font-weight-bold text-center mb-2">{{ plan.name }}</h3>
+          <p class="text-center text-body-2 text-medium-emphasis mb-3">{{ plan.description }}</p>
+          <div class="text-center mb-4">
+            <span class="text-h3 font-weight-bold">{{ plan.price }}</span>
+            <span class="text-body-2 text-medium-emphasis">/one-time</span>
+          </div>
+
+          <v-divider class="my-4" />
+
+          <v-list class="bg-transparent" density="compact">
+            <v-list-item v-for="(feature, fIndex) in plan.features" :key="fIndex" class="px-0">
+              <template v-slot:prepend>
+                <v-icon :color="plan.popular ? 'white' : 'success'" size="small">mdi-check-circle</v-icon>
+              </template>
+              <v-list-item-title :class="plan.popular ? 'text-white' : ''" class="text-body-2">{{ feature }}</v-list-item-title>
+            </v-list-item>
+          </v-list>
+
+          <v-btn 
+            block 
+            size="large" 
+            :color="plan.popular ? 'white' : 'primary'"
+            :variant="plan.popular ? 'elevated' : 'flat'"
+            class="mt-4"
           >
-            <div v-if="plan.savings" class="text-center mb-3">
-              <v-chip color="success" size="small">{{ plan.savings }}</v-chip>
-            </div>
-
-            <h3 class="text-h5 font-weight-bold text-center mb-2">{{ plan.name }}</h3>
-            <div class="text-center mb-4">
-              <span class="text-h3 font-weight-bold">{{ plan.price }}</span>
-            </div>
-
-            <v-divider class="my-4" />
-
-            <v-list class="bg-transparent" density="compact">
-              <v-list-item v-for="(feature, fIndex) in plan.features" :key="fIndex" class="px-0">
-                <template v-slot:prepend>
-                  <v-icon color="success" size="small">mdi-check</v-icon>
-                </template>
-                <v-list-item-title class="text-body-2">{{ feature }}</v-list-item-title>
-              </v-list-item>
-            </v-list>
-
-            <v-btn 
-              block 
-              size="large" 
-              :color="category.featured && planIndex === 1 ? 'white' : 'primary'"
-              :variant="category.featured && planIndex === 1 ? 'elevated' : 'flat'"
-              class="mt-4"
-            >
-              Get Started
-            </v-btn>
-          </v-card>
-        </v-col>
-      </v-row>
-    </div>
+            Get Started
+          </v-btn>
+        </v-card>
+      </v-col>
+    </v-row>
 
     <v-divider class="my-16" thickness="2" />
 
@@ -398,6 +413,14 @@ onMounted(() => {
 .featured-plan {
   transform: scale(1.05);
   border: 2px solid rgb(var(--v-theme-primary));
+}
+
+.popular-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
 }
 
 /* Responsive Adjustments */
