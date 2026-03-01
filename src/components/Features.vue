@@ -244,7 +244,7 @@ onMounted(() => {
     <v-divider class="my-16" thickness="2" />
 
     <!-- Pricing Section -->
-    <div class="text-center mb-12" data-aos="fade-up">
+    <div id="pricing" class="text-center mb-12" data-aos="fade-up">
       <h2 class="text-h3 font-weight-bold mb-4">
         Simple & Transparent <span class="text-primary">Pricing</span>
       </h2>
@@ -314,7 +314,7 @@ onMounted(() => {
     <v-divider class="my-16" thickness="2" />
 
     <!-- How It Works -->
-    <div class="text-center mb-12" data-aos="fade-up">
+    <div id="how-it-works" class="text-center mb-12" data-aos="fade-up">
       <h2 class="text-h3 font-weight-bold mb-4">
         How It <span class="text-primary">Works</span>
       </h2>

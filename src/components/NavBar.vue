@@ -5,20 +5,23 @@
     <v-app-bar-nav-icon class="d-md-none" @click="drawer = !drawer" />
 
     <!-- Logo and Brand -->
-    <div class="d-flex align-center ga-2 ml-2 ml-md-4">
+    <div class="d-flex align-center ga-2 ml-2 ml-md-4 cursor-pointer" @click="scrollToTop">
       <v-img :src="logo" max-height="50" max-width="50" contain class="logo-img" />
-      <div class="brand-text d-none d-sm-flex flex-column align-center">
-        <v-img src="/logohai.png" max-height="32" max-width="140" contain class="brand-logo" />
-        <span class="text-caption text-medium-emphasis" style="line-height: 1; margin-top: -2px;">AI Career Platform</span>
+      <div class="brand-text d-none d-sm-flex flex-column">
+        <span class="text-h6 font-weight-bold primary--text">Fixkaro.ai</span>
+        <span class="text-caption text-medium-emphasis" style="line-height: 1; margin-top: -4px;">AI Career Platform</span>
       </div>
     </div>
 
     <!-- LEFT MENU (Desktop only) -->
     <div class="d-none d-md-flex align-center ml-8">
+      <!-- Home -->
+      <v-btn class="text-body-2" variant="text" @click="scrollToTop">Home</v-btn>
+      
       <!-- Features -->
-      <v-btn class="text-body-2" variant="text" href="#features">Features</v-btn>
+      <v-btn class="text-body-2" variant="text" @click="scrollToSection('features')">Features</v-btn>
 
-      <!-- Resume Services -->
+      <!-- Services -->
       <v-menu open-on-hover>
         <template #activator="{ props }">
           <v-btn
@@ -27,67 +30,36 @@
             variant="text"
             append-icon="mdi-chevron-down"
           >
-            Resume
+            Services
           </v-btn>
         </template>
         <v-list density="compact" class="py-2">
-          <v-list-item>
+          <v-list-item @click="scrollToSection('features')">
             <v-list-item-title class="text-body-2">
               <v-icon size="small" class="mr-2">mdi-robot</v-icon>
               AI Resume Builder
             </v-list-item-title>
           </v-list-item>
-          <v-list-item>
-            <v-list-item-title class="text-body-2">
-              <v-icon size="small" class="mr-2">mdi-check-circle</v-icon>
-              ATS Resume Check
-            </v-list-item-title>
-          </v-list-item>
-          <v-list-item>
-            <v-list-item-title class="text-body-2">
-              <v-icon size="small" class="mr-2">mdi-file-document</v-icon>
-              Resume Examples
-            </v-list-item-title>
-          </v-list-item>
-        </v-list>
-      </v-menu>
-
-      <!-- Portfolio -->
-      <v-menu open-on-hover>
-        <template #activator="{ props }">
-          <v-btn
-            v-bind="props"
-            class="text-body-2"
-            variant="text"
-            append-icon="mdi-chevron-down"
-          >
-            Portfolio
-          </v-btn>
-        </template>
-        <v-list density="compact" class="py-2">
-          <v-list-item>
+          <v-list-item @click="scrollToSection('features')">
             <v-list-item-title class="text-body-2">
               <v-icon size="small" class="mr-2">mdi-web</v-icon>
-              Website Builder
+              Portfolio Website
             </v-list-item-title>
           </v-list-item>
-          <v-list-item>
+          <v-list-item @click="scrollToSection('features')">
             <v-list-item-title class="text-body-2">
-              <v-icon size="small" class="mr-2">mdi-palette</v-icon>
-              Theme Gallery
-            </v-list-item-title>
-          </v-list-item>
-          <v-list-item>
-            <v-list-item-title class="text-body-2">
-              <v-icon size="small" class="mr-2">mdi-eye</v-icon>
-              Portfolio Examples
+              <v-icon size="small" class="mr-2">mdi-linkedin</v-icon>
+              LinkedIn & Naukri Profiles
             </v-list-item-title>
           </v-list-item>
         </v-list>
       </v-menu>
 
+      <!-- How It Works -->
+      <v-btn class="text-body-2" variant="text" @click="scrollToSection('how-it-works')">How It Works</v-btn>
+
       <!-- Pricing -->
-      <v-btn class="text-body-2" variant="text" href="#pricing">Pricing</v-btn>
+      <v-btn class="text-body-2" variant="text" @click="scrollToSection('pricing')">Pricing</v-btn>
       
       <!-- Contact -->
       <v-btn class="text-body-2" variant="text" href="/contact.html">Contact</v-btn>
@@ -143,7 +115,7 @@
       <div class="d-flex align-center ga-2 mb-6">
         <v-img :src="logo" max-height="40" max-width="40" contain />
         <div>
-          <v-img src="/logohai.png" max-height="28" max-width="120" contain class="mb-1" />
+          <div class="text-h6 font-weight-bold">Fixkaro.ai</div>
           <div class="text-caption text-medium-emphasis">AI Career Platform</div>
         </div>
       </div>
@@ -152,41 +124,52 @@
 
       <v-list nav density="comfortable">
         <v-list-item 
+          title="Home" 
+          prepend-icon="mdi-home"
+          @click="scrollToTop(); drawer = false"
+        />
+        
+        <v-list-item 
           title="Features" 
           prepend-icon="mdi-lightning-bolt"
-          href="#features"
+          @click="scrollToSection('features'); drawer = false"
         />
         
         <v-list-group>
           <template v-slot:activator="{ props }">
             <v-list-item
               v-bind="props"
-              title="Resume Services"
-              prepend-icon="mdi-file-document"
+              title="Services"
+              prepend-icon="mdi-briefcase"
             />
           </template>
-          <v-list-item title="AI Resume Builder" class="pl-8" />
-          <v-list-item title="ATS Check" class="pl-8" />
-          <v-list-item title="Examples" class="pl-8" />
+          <v-list-item 
+            title="AI Resume Builder" 
+            class="pl-8" 
+            @click="scrollToSection('features'); drawer = false"
+          />
+          <v-list-item 
+            title="Portfolio Website" 
+            class="pl-8" 
+            @click="scrollToSection('features'); drawer = false"
+          />
+          <v-list-item 
+            title="Social Profiles" 
+            class="pl-8" 
+            @click="scrollToSection('features'); drawer = false"
+          />
         </v-list-group>
 
-        <v-list-group>
-          <template v-slot:activator="{ props }">
-            <v-list-item
-              v-bind="props"
-              title="Portfolio"
-              prepend-icon="mdi-web"
-            />
-          </template>
-          <v-list-item title="Website Builder" class="pl-8" />
-          <v-list-item title="Theme Gallery" class="pl-8" />
-          <v-list-item title="Examples" class="pl-8" />
-        </v-list-group>
+        <v-list-item 
+          title="How It Works" 
+          prepend-icon="mdi-help-circle"
+          @click="scrollToSection('how-it-works'); drawer = false"
+        />
 
         <v-list-item 
           title="Pricing" 
           prepend-icon="mdi-currency-inr"
-          href="#pricing"
+          @click="scrollToSection('pricing'); drawer = false"
         />
         
         <v-list-item 
@@ -242,6 +225,28 @@ import UserProfile from "./UserProfile.vue";
 
 const drawer = ref(false);
 const { user, loading, displayName, signInWithGoogle, signOutUser } = useAuth();
+
+// Scroll functions
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+};
+
+const scrollToSection = (sectionId) => {
+  const element = document.getElementById(sectionId);
+  if (element) {
+    const offset = 80; // Account for fixed navbar
+    const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+    const offsetPosition = elementPosition - offset;
+    
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth'
+    });
+  }
+};
 </script>
 
 <style scoped>
@@ -261,14 +266,6 @@ const { user, loading, displayName, signInWithGoogle, signOutUser } = useAuth();
   user-select: none;
 }
 
-.brand-logo {
-  transition: transform 0.3s ease;
-}
-
-.brand-logo:hover {
-  transform: scale(1.02);
-}
-
 .mobile-drawer {
   max-width: 300px;
 }
@@ -281,5 +278,9 @@ const { user, loading, displayName, signInWithGoogle, signOutUser } = useAuth();
 .user-menu-btn {
   text-transform: none;
   border-radius: 24px;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
 </style>
